@@ -29,7 +29,7 @@
                 <li class="nav-item dropdown hidden-caret">
                     <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false">
                         <div class="avatar-sm">
-                            <img src="{{ asset('assets/img/profile.jpg') }}" alt="..." class="avatar-img rounded-circle">
+                            <img src="{{ asset('assets/img/user200x200.png') }}" alt="..." class="avatar-img rounded-circle">
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -37,7 +37,7 @@
                             <li>
                                 <div class="user-box">
                                     <div class="avatar-lg">
-                                        <img src="{{ asset('assets/img/profile.jpg') }}" alt="image profile" class="avatar-img rounded">
+                                        <img src="{{ asset('assets/img/user200x200.png') }}" alt="image profile" class="avatar-img rounded">
                                     </div>
                                     <div class="u-text">
                                         @if(Auth::check())
