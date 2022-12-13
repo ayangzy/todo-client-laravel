@@ -17,6 +17,7 @@ class TodoController extends Controller
 
     public function __construct(TodoService $todoService)
     {
+        $this->middleware('auth');
         $this->todoService = $todoService;
     }
 
