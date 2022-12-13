@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12 mt-5">
             <div class="card">
-                <div class="card-header"><a href="" class="btn btn-primary pull-right">Create Todo</a></div>
+                <div class="card-header"><a href="{{ route('todo.create') }}" class="btn btn-primary pull-right">Create Todo</a></div>
 
                 <div class="card-body">
                     @if (session('status'))

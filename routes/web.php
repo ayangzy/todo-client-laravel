@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TodoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('todos')->name('todo.')->group(function () {
+    Route::get('/create', [TodoController::class, 'create'])->name('create');
+    Route::get('/edit', [TodoController::class, 'edit'])->name('edit');
+});
