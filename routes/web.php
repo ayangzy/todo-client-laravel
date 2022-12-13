@@ -24,6 +24,10 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::prefix('todos')->name('todo.')->group(function () {
+    Route::get('/', [TodoController::class, 'index'])->name('index');
     Route::get('/create', [TodoController::class, 'create'])->name('create');
-    Route::get('/edit', [TodoController::class, 'edit'])->name('edit');
+    Route::post('/store', [TodoController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [TodoController::class, 'edit'])->name('edit');
+    Route::patch('/update/{id}', [TodoController::class, 'update'])->name('update');
+    Route::delete('/destroy/{id}', [TodoController::class, 'destroy'])->name('destroy');
 });

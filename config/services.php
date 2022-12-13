@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'todo' => [
+        'base_uri' => env('TODO_SERVICE_BASE_URI'),
+        'secret' => env('TODO_SERVICE_SECRET')
+    ]
+
 ];

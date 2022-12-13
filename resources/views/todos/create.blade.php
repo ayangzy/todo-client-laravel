@@ -5,9 +5,14 @@
     <div class="card mt-5">
 
         <div class="card-body">
-            <h5 class="card-title">Create Todo</h5>
-            <form action="" method="post">
-
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('todo.index') }}">Todos</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Add new Todo</li>
+                </ol>
+            </nav>
+            <form action="{{ route('todo.store') }}" method="post">
+                @csrf
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">

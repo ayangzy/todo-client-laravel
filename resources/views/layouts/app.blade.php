@@ -3,6 +3,7 @@
 
 <head>
     <!-- head -->
+    <link rel="stylesheet" href="{{asset('assets/css/toastr.min.css')}}">
     @include('layouts.inc.head')
     @stack('page-style')
 </head>
@@ -20,7 +21,6 @@
 
         <div class="main-panel py-5">
             @yield('content')
-            <!-- footer -->
 
         </div>
 
@@ -30,3 +30,13 @@
 </body>
 
 </html>
+
+
+<script src="{{asset('assets/js/toastr.min.js')}}"></script>
+
+<script>
+    @if(Session::has('info'))
+    toastr.info("{{Session::get('info')}}")
+    @endif
+
+</script>

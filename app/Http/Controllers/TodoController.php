@@ -3,17 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\TodoService;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CreateTodoRequest;
 
 class TodoController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @var \App\Services\TodoService
      */
+    protected $orderService;
+
+    public function __construct(TodoService $todoService)
+    {
+        $this->todoService = $todoService;
+    }
+
     public function index()
     {
-        //
+        $todos  = $this->todoService->fetchTodos();
+
+        return view('todos.index', compact('todos'));
     }
 
     /**
@@ -32,9 +43,12 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTodoRequest $request)
     {
-        //
+        $newTodo = $this->todoService->createTodo($request->all());
+
+        Session::flash('info',  $newTodo['message']);
+        return redirect()->back();
     }
 
 
@@ -43,21 +57,13 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view('todos.edit');
+        $todo = $this->todoService->fetchTodo($id);
+
+        return view('todos.edit', compact('todo'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -68,7 +74,10 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $todo = $this->todoService->updateTodo($id, $request->all());
+
+        Session::flash('info',  $todo['message']);
+        return redirect()->route('todo.index');
     }
 
     /**
@@ -79,6 +88,9 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $todo = $this->todoService->deleteTodo($id);
+
+        Session::flash('info',  $todo['message']);
+        return redirect()->back();
     }
 }
