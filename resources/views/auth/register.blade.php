@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container container-login animated fadeIn">
-    <h3 class="text-center">Todo Login</h3>
+    <h3 class="text-center">Register</h3>
     <div class="login-form">
         <form method="POST" action="{{ route('register') }}">
             @csrf
