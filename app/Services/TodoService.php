@@ -3,19 +3,16 @@
 namespace App\Services;
 
 use Exception;
-use App\Traits\RequestService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 class TodoService
 {
     protected $baseUri;
 
-    protected $secret;
-
     public function __construct()
     {
         $this->baseUri = config('services.todo.base_uri');
-        $this->secret = config('services.todo.secret');
     }
 
 
@@ -23,7 +20,7 @@ class TodoService
     {
         $url = $this->baseUri . 'todos';
 
-        $response = Http::get($url)['data'];
+        $response = Http::withToken($this->fetchJwtToken())->get($url)['data'];
 
         return $response;
     }
@@ -32,7 +29,7 @@ class TodoService
     {
         $url = $this->baseUri . "todos/{$todo}";
 
-        $response = Http::get($url)['data'];
+        $response = Http::withToken($this->fetchJwtToken())->get($url)['data'];
 
         return $response;
     }
@@ -42,7 +39,7 @@ class TodoService
     {
         $url = $this->baseUri . 'todos';
 
-        $response = Http::post($url, $data);
+        $response = Http::withToken($this->fetchJwtToken())->post($url, $data);
 
         return json_decode($response->body(), true);
     }
@@ -52,7 +49,7 @@ class TodoService
     {
         $url = $this->baseUri . "todos/{$todo}";
 
-        $response = Http::patch($url, $data);
+        $response = Http::withToken($this->fetchJwtToken())->patch($url, $data);
 
         return json_decode($response->body(), true);
     }
@@ -63,8 +60,13 @@ class TodoService
 
         $url = $this->baseUri . "todos/{$todo}";
 
-        $response = Http::delete($url);
+        $response = Http::withToken($this->fetchJwtToken())->delete($url);
 
         return json_decode($response->body(), true);
+    }
+
+    private function fetchJwtToken()
+    {
+        return Auth::user()->api_token;
     }
 }

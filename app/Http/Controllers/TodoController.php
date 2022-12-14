@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\TodoService;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\CreateTodoRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
@@ -23,6 +24,7 @@ class TodoController extends Controller
 
     public function index()
     {
+
         $todos  = $this->todoService->fetchTodos();
 
         return view('todos.index', compact('todos'));
@@ -46,6 +48,7 @@ class TodoController extends Controller
      */
     public function store(CreateTodoRequest $request)
     {
+        $request['userId'] = Auth::id();
         $newTodo = $this->todoService->createTodo($request->all());
 
         Session::flash('info',  $newTodo['message']);

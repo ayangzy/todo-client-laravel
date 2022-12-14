@@ -27,7 +27,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($todos as $key => $todo)
+                            @forelse($todos as $key => $todo)
                             <tr>
                                 <th scope="row">{{ $key + 1 }}</th>
 
@@ -45,7 +45,14 @@
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td>
+                                    <p class="text-center">You Currently do not have any todos, Kindly create one</p>
+                                </td>
+                            </tr>
+                            @endforelse
+
 
                         </tbody>
                     </table>
