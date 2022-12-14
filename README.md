@@ -1,66 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Task
+Challenge <br>
+Develop two Services (TodoAPIs and TodoMVC) with the following specifications: <br>
 
-## About Laravel
+TodoAPIs <br>
+An Application programming interface (API) service written in Javascript (NodeJs/ExpressJs)
+that enables the client:
+(i) Create Todos <br>
+(ii) Read Todos <br>
+(iii) Update Todos <br>
+(iv) Delete Todos <br>
+The Client is the TodoMVC which will be specified below. Please note that the Client must
+be authenticated with JWT and all API endpoints must contain a middleware that validates
+the Client. MongoDB should be used as the Database. <br>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+TodoMVC <br>
+A Model-View-Controller(MVC) application written with Php (Laravel framework) that has
+an independent authentication system to register and login a User using a MySQL database.
+This app has its forms (views) and uses the TodoAPIs above for the Todo CRUD operations.
+It enables an authorized User do the following:
+(i) Create Todos <br>
+(ii) Read Todos<br>
+(iii) Update Todos<br>
+(iv) Delete Todos<br>
+## Installation & Usage
+<hr/>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Downloading the Project
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+This framework requires PHP 8.0, laravel 9 and mysql database
+.  
+You can simply clone  `` todo-client-laravel`` like below on your git bash
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+```bash
+https://github.com/ayangzy/todo-client-laravel.git
+```
+After cloning the project, please run this command on the project directory
+```
+composer install
+```
+### Configure Environment
+To run the application you must configure the ```.env``` environment file with your database details. Use the following commmand to create .env file. 
+```
+cp .env.example .env
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Next, run the following command  to run database migrations
+```
+php artisan migrate
+```
 
-## Laravel Sponsors
+Note that The nodejs app is running on port 6000 in my case but feel free to add your own port in the .env file in the root directory of the nodejs app. 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Don't forget to add the below environment variable containing the server port which is powering the TodoApi app
+```
+TODO_API_BASE_URI='localhost:6000/api/v1/'
+```
 
-### Premium Partners
+After doing this, Clone your nodejs app (TodoApi) and ensure the server is up and running. I will give instruction on how to set up the TodoApi
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Finally serve your application using
 
-## Contributing
+```
+ php artisan serve
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Security
 
-## Code of Conduct
+If you discover any security related issues, please email felixdecoder2020@gmail.com instead of using the issue tracker.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Credits
 
-## Security Vulnerabilities
+- [Ayange Felix](https://github.com/ayangzy)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

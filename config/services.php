@@ -32,7 +32,7 @@ return [
     ],
 
     'todo' => [
-        'base_uri' => env('TODO_SERVICE_BASE_URI'),
+        'base_uri' => env('TODO_API_BASE_URI'),
         'secret' => env('TODO_SERVICE_SECRET')
     ]
 
