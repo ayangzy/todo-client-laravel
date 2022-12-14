@@ -52,11 +52,11 @@ Next, run the following command  to run database migrations
 php artisan migrate
 ```
 
-Note that The nodejs app is running on port 6000 in my case but feel free to add your own port in the .env file in the root directory of the nodejs app. 
+Note that The nodejs app is running on port 3000 in my case but feel free to add your own port in the .env file in the root directory of the nodejs app. 
 
 Don't forget to add the below environment variable containing the server port which is powering the TodoApi app
 ```
-TODO_API_BASE_URI='localhost:6000/api/v1/'
+TODO_API_BASE_URI='localhost:3000/api/v1/'
 ```
 
 After doing this, Clone your nodejs app (TodoApi) and ensure the server is up and running. I will give instruction on how to set up the TodoApi
